@@ -1,11 +1,11 @@
-#include <fstream>
-#include <sstream>
 #include "reading.h"
 
-void readfile(GraphDyn &grd, Graph &gr, string el_name) {
+using namespace std;
+
+void readEdgeListFile(GraphDyn &grd, Graph &gr, const string &filename) {
 	ifstream infile;
-	infile.open(el_name);
-	int a, b;
+	infile.open(filename);
+	uint16_t a, b;
 	while (infile >> a >> b) {
 		grd.addEdge(a, b);
 		gr.addEdge(a, b);
@@ -13,24 +13,26 @@ void readfile(GraphDyn &grd, Graph &gr, string el_name) {
 	infile.close();
 }
 
-void readGraph(GraphDyn &grd, Graph &gr, string name) {
+void readGraphFile(GraphDyn &grd, Graph &gr, const string &filename) {
 	ifstream infile;
-	infile.open(name);
+	infile.open(filename);
 	string line;
-	int row = 0;
+	uint16_t row = 0;
 	while (getline(infile, line)) {
 		istringstream ss(line);
-		int num;
+		uint16_t num;
 		while (ss >> num) {
-			grd.addEdge(row, num);
-			gr.addEdge(row, num);
+			if (not row == 0){
+				grd.addEdge(row, num);
+				gr.addEdge(row, num);
+			}
 		}
 		row++;
 	}
 	infile.close();
 }
 
-string GetSuffix(string filename) {
+string getSuffix(string filename) {
 	size_t suff_pos = filename.rfind('.');
 	if (suff_pos == string::npos) {
 		cout << "Could't find suffix of " << filename << std::endl;

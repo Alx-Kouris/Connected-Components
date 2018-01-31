@@ -1,6 +1,6 @@
 #include "shiloach.h"
 
-void ShiloachVishkin_HW(nodeID *comp, int16_t *g) {
+void ShiloachVishkin_HW(nodeID *comp, int16_t *graph) {
 	nodeID *compBUFFER;
 	compBUFFER = (nodeID *)malloc(NODES * sizeof(nodeID));
 	Create_HW(compBUFFER);
@@ -9,7 +9,7 @@ void ShiloachVishkin_HW(nodeID *comp, int16_t *g) {
 	while (flag) {
 		flag = false;
 		iterations++;
-		Inner_HW(compBUFFER, comp, g, flag);
+		Inner_HW(compBUFFER, comp, graph, flag);
 		if (!flag) break;
 		CopyComp_HW(comp, compBUFFER);
 	}
@@ -30,7 +30,7 @@ void CopyComp_HW(nodeID comp_in[NODES], nodeID comp_out[NODES]) {
 	}
 }
 
-void Inner_HW(nodeID comp_in[NODES], nodeID comp_out[NODES], int g[ROWS * COLS], bool &flag) {
+void Inner_HW(nodeID *comp_in, nodeID *comp_out, int16_t *g, bool &flag) {
 	nodeID compBUFF[NODES];
 	for (size_t i = 0; i < NODES; i++) {
 		compBUFF[i] = comp_in[i];
@@ -56,4 +56,14 @@ void Inner_HW(nodeID comp_in[NODES], nodeID comp_out[NODES], int g[ROWS * COLS],
 
 	for (size_t i = 0; i < NODES; i++)
 		comp_out[i] = compBUFF[i];
+}
+
+void PrintCompStats(nodeID *comp) {
+  std::unordered_map<nodeID, nodeID> count;
+  nodeID comp_i;
+  for (nodeID i = 0; i < NODES; i++) {
+    comp_i = comp[i];
+    count[comp_i] += 1;
+  }
+  std::cout << "There are " << count.size() << " components." << std::endl << std::endl;
 }

@@ -1,5 +1,7 @@
 #include "shiloach_dynamic.h"
 
+using namespace std;
+
 vector<nodeID> ShiloachVishkinDyn(const GraphDyn &g) {
 	vector<nodeID> comp(g.num_nodes());
 	for (nodeID n = 0; n < g.num_nodes(); n++)

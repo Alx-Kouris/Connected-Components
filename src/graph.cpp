@@ -1,8 +1,8 @@
-#include "utilities.h"
+#include "graph.h"
 
 using namespace std;
 
-uint32_t Graph::NumNodes()
+uint16_t Graph::NumNodes()
 {
 	return num_nodes;
 }

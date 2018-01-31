@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/cc_git.dir/main/graph.cpp.o CMakeFiles/cc_git.dir/main/graph_dyn.cpp.o CMakeFiles/cc_git.dir/main/main.cpp.o CMakeFiles/cc_git.dir/main/reading.cpp.o CMakeFiles/cc_git.dir/main/shiloach_dynamic.cpp.o CMakeFiles/cc_git.dir/main/shiloach.cpp.o  -o cc_git 
