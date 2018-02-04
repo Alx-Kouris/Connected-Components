@@ -39,9 +39,9 @@ void Inner_HW(nodeID *comp_in, nodeID *comp_out, int16_t *g, bool &flag) {
 	for (size_t u = 0; u < NODES; u++) {
 		nodeID comp_u = compBUFF[u];
 		for (size_t v = 0; v < COLS; v++) {
-			if (g[(u * COLS) + v] != -1) {
-				nodeID comp_v = compBUFF[g[(u * COLS) + v]];
-				if ((comp_u < comp_v) && (comp_v == compBUFF[comp_v])) {
+      if (g[(u * COLS) + v] != -1) {
+      	nodeID comp_v = compBUFF[g[(u * COLS) + v]];
+				if ((comp_u < comp_v) and (comp_v == compBUFF[comp_v])) {
 					compBUFF[comp_v] = comp_u;
 					flag = true;
 				}
@@ -50,8 +50,9 @@ void Inner_HW(nodeID *comp_in, nodeID *comp_out, int16_t *g, bool &flag) {
 	}
 
 	for (size_t n = 0; n < NODES; n++) {
-		if (compBUFF[n] != compBUFF[compBUFF[n]])
-			compBUFF[n] = compBUFF[compBUFF[n]];
+    while (compBUFF[n] != compBUFF[compBUFF[n]]) {
+      compBUFF[n] = compBUFF[compBUFF[n]];
+    }
 	}
 
 	for (size_t i = 0; i < NODES; i++)

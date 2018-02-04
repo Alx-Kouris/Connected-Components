@@ -3,20 +3,19 @@ project(cc_git)
 
 set(CMAKE_CXX_STANDARD 11)
 
-include_directories(libraries)
+include_directories(include)
 
 add_executable(cc_git
-        libraries/graph.h
-        libraries/graph_dyn.h
-        libraries/reading.h
-        libraries/shiloach.h
-        libraries/shiloach_dynamic.h
-        libraries/utilities.h
-        main/graph.cpp
-        main/graph_dyn.cpp
-        main/main.cpp
-        main/makefile
-        main/reading.cpp
-        main/shiloach_dynamic.cpp
-        main/shiloach.cpp
-        makefile)
+        include/graph.h
+        include/graph_dyn.h
+        include/reading.h
+        include/shiloach.h
+        include/shiloach_dynamic.h
+        include/utilities.h
+        src/graph.cpp
+        src/graph_dyn.cpp
+        src/main.cpp
+        src/reading.cpp
+        src/shiloach_dynamic.cpp
+        src/shiloach.cpp
+        Makefile)

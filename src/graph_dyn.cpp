@@ -8,17 +8,17 @@ GraphDyn::GraphDyn(uint16_t V)
 	adj = new vector<uint16_t >[V];
 }
 
-void GraphDyn::addEdge(uint16_t v, uint16_t w)
+void GraphDyn::addEdge(uint16_t &v, uint16_t &w)
 {
 	adj[v].push_back(w); // Add w to v's vector.
 }
 
-uint16_t GraphDyn::num_nodes() const
+uint16_t GraphDyn::numNodes() const
 {
 	return num_vert;
 }
 
-vector<uint16_t> GraphDyn::out_neighs(uint16_t v) const
+vector<uint16_t> GraphDyn::outNeighs(uint16_t v) const
 {
 	return adj[v];
 }

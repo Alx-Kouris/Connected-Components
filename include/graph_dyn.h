@@ -10,11 +10,11 @@ class GraphDyn
 
 public:
 	explicit GraphDyn(uint16_t V);
-	void addEdge(uint16_t v, uint16_t w);
+	void addEdge(uint16_t &v, uint16_t &w);
 	void printGraph();
 
-	uint16_t num_nodes() const;//Returns number of nodes of the GraphDyn
-	std::vector<uint16_t> out_neighs(uint16_t v) const;//Returns the outgoing vertices(neighborhood) of the (v) node
+	uint16_t numNodes() const;//Returns number of nodes of the GraphDyn
+	std::vector<uint16_t> outNeighs(uint16_t v) const;//Returns the outgoing vertices(neighborhood) of the (v) node
 };
 
 #endif // !GRAPH_DYN_H

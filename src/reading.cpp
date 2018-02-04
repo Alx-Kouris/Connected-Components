@@ -14,21 +14,49 @@ void readEdgeListFile(GraphDyn &grd, Graph &gr, const string &filename) {
 }
 
 void readGraphFile(GraphDyn &grd, Graph &gr, const string &filename) {
-	ifstream infile;
-	infile.open(filename);
+	ifstream infile(filename);
 	string line;
-	uint16_t row = 0;
-	while (getline(infile, line)) {
-		istringstream ss(line);
-		uint16_t num;
-		while (ss >> num) {
-			if (not row == 0){
-				grd.addEdge(row, num);
-				gr.addEdge(row, num);
+	int32_t c;
+	uint32_t numNodes, numEdges;
+	while (true){
+		c = infile.peek();
+		if (c == '%')
+			infile.ignore(200, '\n');
+		else {
+			getline(infile, line, '\n');
+			istringstream header_stream(line);
+			header_stream >> numNodes >> numEdges >> ws;
+			if (not header_stream.eof()) {
+				int32_t fmt=-1;
+				header_stream >> fmt;
+				if (fmt != -1) {
+					cout << "Do not support this type of METIS graph type" << endl;
+				}
 			}
+			break;
 		}
-		row++;
 	}
+
+	nodeID node = 0;
+	while (node < numNodes) {
+		c = infile.peek();
+		if (c == '%')
+			infile.ignore(200, '\n');
+		else {
+			getline(infile, line);
+			if (not line.empty()) {
+				istringstream edge_stream(line);
+				nodeID edge;
+				while (edge_stream >> edge >> ws) {
+					edge--;
+					grd.addEdge(node, edge);
+					gr.addEdge(node, edge);
+				}
+			}
+			node++;
+		}
+	}
+	cout << "Number of nodes: " << numNodes << endl;
 	infile.close();
 }
 

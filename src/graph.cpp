@@ -2,16 +2,16 @@
 
 using namespace std;
 
-uint16_t Graph::NumNodes()
+uint16_t Graph::numNodes()
 {
-	return num_nodes;
+	return _num_nodes;
 }
 
-void Graph::addEdge(uint16_t r, uint16_t n)
+void Graph::addEdge(uint16_t &r, uint16_t &n)
 {
 	for (size_t i = 0; i < COLS; i++) {
-		if (graph[(r*COLS) + i] == -1) {
-			graph[(r*COLS) + i] = n;
+		if (_graph[(r*COLS) + i] == -1) {
+			_graph[(r*COLS) + i] = n;
 			break;
 		}
 	}
@@ -19,23 +19,28 @@ void Graph::addEdge(uint16_t r, uint16_t n)
 
 Graph::Graph(uint16_t n)
 {
-	graph = (int16_t *)malloc(ROWS*COLS * sizeof(int16_t));
-	fill(graph,graph + sizeof(graph), -1);
-	this->num_nodes = n;
+	_graph = (int16_t *)malloc(ROWS*COLS * sizeof(int16_t));
+	fill(_graph,_graph + ROWS*COLS, -1);
+//	for (size_t i = 0; i<ROWS; i++) {
+//		for (size_t j = 0; j<COLS; j++) {
+//			_graph[(i * COLS) + j] = -1;
+//		}
+//	}
+	this->_num_nodes = n;
 }
 
 Graph::Graph()
 {
-	fill(graph,graph + sizeof(graph), -1);
-	this->num_nodes = 0;
+	fill(_graph,_graph + sizeof(_graph), -1);
+	this->_num_nodes = 0;
 }
 
-void Graph::PrintGraph()
+void Graph::printGraph()
 {
-	for (int i = 0; i<ROWS; i++) {
+	for (size_t i = 0; i<ROWS; i++) {
 		cout << i << ": ";
-		for (int j = 0; j<COLS; j++) {
-			cout << graph[(i * COLS) + j] << ' ';
+		for (size_t j = 0; j<COLS; j++) {
+			cout << _graph[(i * COLS) + j] << ' ';
 		}
 		cout << endl;
 	}
