@@ -2,31 +2,26 @@
 
 using namespace std;
 
-uint16_t Graph::numNodes()
+uint32_t Graph::numNodes()
 {
 	return _num_nodes;
 }
 
-void Graph::addEdge(uint16_t &r, uint16_t &n)
+void Graph::addEdge(uint32_t &node, uint32_t &edge)
 {
 	for (size_t i = 0; i < COLS; i++) {
-		if (_graph[(r*COLS) + i] == -1) {
-			_graph[(r*COLS) + i] = n;
+		if (_graph[(node*COLS) + i] == -1 and _graph[(node*COLS) + i] != static_cast<int32_t >(edge)) {
+			_graph[(node*COLS) + i] = edge;
 			break;
 		}
 	}
 }
 
-Graph::Graph(uint16_t n)
+Graph::Graph(uint32_t nodes)
 {
-	_graph = (int16_t *)malloc(ROWS*COLS * sizeof(int16_t));
+	_graph = (int32_t *)malloc(ROWS*COLS * sizeof(int32_t));
 	fill(_graph,_graph + ROWS*COLS, -1);
-//	for (size_t i = 0; i<ROWS; i++) {
-//		for (size_t j = 0; j<COLS; j++) {
-//			_graph[(i * COLS) + j] = -1;
-//		}
-//	}
-	this->_num_nodes = n;
+	this->_num_nodes = nodes;
 }
 
 Graph::Graph()

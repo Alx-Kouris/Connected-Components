@@ -17,5 +17,4 @@ add_executable(cc_git
         src/main.cpp
         src/reading.cpp
         src/shiloach_dynamic.cpp
-        src/shiloach.cpp
-        Makefile)
+        src/shiloach.cpp src/printStats.cpp)

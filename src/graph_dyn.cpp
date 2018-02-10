@@ -2,32 +2,32 @@
 
 using namespace std;
 
-GraphDyn::GraphDyn(uint16_t V)
+GraphDyn::GraphDyn(uint32_t V)
 {
-	this->num_vert = V;
-	adj = new vector<uint16_t >[V];
+	this->_numNodes = V;
+	_adjacency = new vector<uint32_t >[V];
 }
 
-void GraphDyn::addEdge(uint16_t &v, uint16_t &w)
+void GraphDyn::addEdge(uint32_t &node, uint32_t &edge)
 {
-	adj[v].push_back(w); // Add w to v's vector.
+	_adjacency[node].push_back(edge); // Add w to v's vector.
 }
 
-uint16_t GraphDyn::numNodes() const
+uint32_t GraphDyn::numNodes() const
 {
-	return num_vert;
+	return _numNodes;
 }
 
-vector<uint16_t> GraphDyn::outNeighs(uint16_t v) const
+vector<uint32_t> GraphDyn::outNeighs(uint32_t node) const
 {
-	return adj[v];
+	return _adjacency[node];
 }
 
 void GraphDyn::printGraph()
 {
-	for (int k = 0; k < num_vert; k++) {
+	for (size_t k = 0; k < _numNodes; k++) {
 		cout << k << ": ";
-		for (vector<uint16_t>::const_iterator i = adj[k].begin(); i != adj[k].end(); ++i) {
+		for (vector<uint32_t>::const_iterator i = _adjacency[k].begin(); i != _adjacency[k].end(); ++i) {
 			cout << *i << ' ';
 		}
 		cout << endl;

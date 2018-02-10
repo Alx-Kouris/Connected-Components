@@ -12,10 +12,10 @@
 #include <fstream>
 #include <sstream>
 
-static constexpr uint32_t NODES = 65536;
-static constexpr uint32_t ROWS = 65536;
-static constexpr uint32_t COLS = 2000;
+static constexpr uint32_t NODES = 36692;
+static constexpr uint32_t ROWS = 36692;
+static constexpr uint32_t COLS = 5000;
 
-typedef uint16_t nodeID;
+typedef uint32_t nodeID;
 
 #endif // !UTILITIES_H

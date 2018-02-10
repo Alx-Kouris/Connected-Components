@@ -2,18 +2,18 @@
 
 using namespace std;
 
-void readEdgeListFile(GraphDyn &grd, Graph &gr, const string &filename) {
+void readEdgeListFile(GraphDyn &vectorGraph, Graph &arrayGraph, const string &filename) {
 	ifstream infile;
 	infile.open(filename);
-	uint16_t a, b;
-	while (infile >> a >> b) {
-		grd.addEdge(a, b);
-		gr.addEdge(a, b);
+	nodeID node, edge;
+	while (infile >> node >> edge) {
+		vectorGraph.addEdge(node, edge);
+		arrayGraph.addEdge(node, edge);
 	}
 	infile.close();
 }
 
-void readGraphFile(GraphDyn &grd, Graph &gr, const string &filename) {
+void readGraphFile(GraphDyn &vectorGraph, Graph &arrayGraph, const string &filename) {
 	ifstream infile(filename);
 	string line;
 	int32_t c;
@@ -49,8 +49,8 @@ void readGraphFile(GraphDyn &grd, Graph &gr, const string &filename) {
 				nodeID edge;
 				while (edge_stream >> edge >> ws) {
 					edge--;
-					grd.addEdge(node, edge);
-					gr.addEdge(node, edge);
+					vectorGraph.addEdge(node, edge);
+					arrayGraph.addEdge(node, edge);
 				}
 			}
 			node++;
@@ -60,11 +60,11 @@ void readGraphFile(GraphDyn &grd, Graph &gr, const string &filename) {
 	infile.close();
 }
 
-string getSuffix(string filename) {
+string getSuffix(const string& filename) {
 	size_t suff_pos = filename.rfind('.');
 	if (suff_pos == string::npos) {
 		cout << "Could't find suffix of " << filename << std::endl;
 		exit(-1);
 	}
-	return filename.substr(suff_pos);
+	return filename.substr(suff_pos+1);
 }

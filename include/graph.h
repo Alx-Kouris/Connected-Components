@@ -6,15 +6,15 @@
 class Graph {
 public:
 	Graph();
-	explicit Graph(uint16_t);
-  int16_t *_graph;
+	explicit Graph(uint32_t nodes);
+  int32_t *_graph;
 
-	void addEdge(uint16_t &r, uint16_t &n);
+	void addEdge(uint32_t &node, uint32_t &edge);
 	void printGraph();
-	uint16_t numNodes();
+	uint32_t numNodes();
 
 private:
-	uint16_t _num_nodes;
+	uint32_t _num_nodes;
 };
 
 #endif // !GRAPH_H

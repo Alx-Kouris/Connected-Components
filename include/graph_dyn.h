@@ -5,16 +5,16 @@
 
 class GraphDyn
 {
-	uint16_t num_vert; // No. of vertices
-	std::vector<uint16_t> *adj; // An array of adjacency lists
+	uint32_t _numNodes; // No. of vertices
+	std::vector<uint32_t> *_adjacency; // An array of adjacency lists
 
 public:
-	explicit GraphDyn(uint16_t V);
-	void addEdge(uint16_t &v, uint16_t &w);
+	explicit GraphDyn(uint32_t V);
+	void addEdge(uint32_t &node, uint32_t &edge);
 	void printGraph();
 
-	uint16_t numNodes() const;//Returns number of nodes of the GraphDyn
-	std::vector<uint16_t> outNeighs(uint16_t v) const;//Returns the outgoing vertices(neighborhood) of the (v) node
+	uint32_t numNodes() const;//Returns number of nodes of the GraphDyn
+	std::vector<uint32_t> outNeighs(uint32_t node) const;//Returns the outgoing vertices(neighborhood) of the (v) node
 };
 
 #endif // !GRAPH_DYN_H

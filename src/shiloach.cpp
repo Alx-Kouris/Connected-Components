@@ -1,6 +1,6 @@
 #include "shiloach.h"
 
-void ShiloachVishkin_HW(nodeID *comp, int16_t *graph) {
+void ShiloachVishkin_HW(nodeID *comp, int32_t *graph) {
 	nodeID *compBUFFER;
 	compBUFFER = (nodeID *)malloc(NODES * sizeof(nodeID));
 	Create_HW(compBUFFER);
@@ -30,7 +30,7 @@ void CopyComp_HW(nodeID comp_in[NODES], nodeID comp_out[NODES]) {
 	}
 }
 
-void Inner_HW(nodeID *comp_in, nodeID *comp_out, int16_t *g, bool &flag) {
+void Inner_HW(nodeID *comp_in, nodeID *comp_out, int32_t *g, bool &flag) {
 	nodeID compBUFF[NODES];
 	for (size_t i = 0; i < NODES; i++) {
 		compBUFF[i] = comp_in[i];

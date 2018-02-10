@@ -32,12 +32,12 @@ int main(int argc, char* argv[])
 	cout << "Reading files..." << endl;
 	const auto suffix = getSuffix(filename);
 	const auto read_time = clock();
-	if (suffix == ".graph") {
+	if (suffix == "graph")
 		readGraphFile(vectorGraph, arrayGraph, filename);
-	}
-	else if (suffix == ".el") {
+	else if (suffix == "el")
 		readEdgeListFile(vectorGraph, arrayGraph, filename);
-	}
+	else
+		cout << "File format " << suffix << " is not supported." << endl;
 	cout << "Reading finished." << endl;
 	cout << "Reading took " << float(clock() - read_time) / CLOCKS_PER_SEC << "secs." << endl << endl;
 
